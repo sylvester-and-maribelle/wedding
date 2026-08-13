@@ -33,7 +33,7 @@ body {
 }
 
 body {
-  padding-bottom: 80px;
+  padding-bottom: 60px;
 }
 
 /* -----------------------
@@ -124,9 +124,5 @@ body {
     border-radius: 22px;
 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  }
-
-  body {
-    padding-bottom: 120px;
   }
 }

@@ -1,5 +1,33 @@
+body.rsvp-container,
+body.rsvp-form {
+  overflow: hidden;
+}
+
+.rsvp-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rsvp-container h1 {
+  flex-shrink: 0;
+}
+
 .rsvp-form {
   width: 100%;
-  padding-bottom: 75px;
+
+  min-height: 650px;
   border: 0;
+}
+
+.rsvp-form iframe {
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .rsvp-container {
+    overflow: hidden;
+  }
 }
