@@ -1,0 +1,380 @@
+/* =========================
+   SCHEDULE
+========================= */
+
+.schedule-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 60px 28px 140px;
+
+  background-color: #fffcf5;
+
+  background-image:
+    /* blue glow — top right */
+    radial-gradient(
+      450px 380px at 95% 4%,
+      rgba(35, 85, 180, 0.09),
+      transparent 100%
+    ),
+    /* blue glow — middle left */
+    radial-gradient(
+        420px 500px at -5% 48%,
+        rgba(35, 85, 180, 0.055),
+        transparent 100%
+      ),
+    /* blue glow — lower right */
+    radial-gradient(
+        420px 480px at 105% 82%,
+        rgba(35, 85, 180, 0.05),
+        transparent 100%
+      );
+
+  background-repeat: no-repeat;
+}
+
+/* HEADER */
+
+.schedule-header {
+  text-align: center;
+  margin-bottom: 75px;
+}
+
+.schedule-header .eyebrow {
+  margin-bottom: 10px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: 5px;
+
+  color: var(--wedding-yellow);
+}
+
+.schedule-header h1 {
+  margin: 0;
+
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 64px;
+  line-height: 1;
+
+  font-weight: 500;
+
+  color: var(--wedding-blue);
+}
+
+.schedule-header h1::after {
+  content: '';
+
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 2px;
+
+  height: 14px;
+
+  background: var(--wedding-yellow-bright);
+
+  z-index: -1;
+}
+
+.schedule-header > p:last-child {
+  margin-top: 18px;
+
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 21px;
+  font-style: italic;
+
+  color: var(--text-light);
+}
+
+/* EACH DATE */
+
+.date .month {
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  color: var(--wedding-yellow);
+}
+
+.date .day {
+  font-family: 'Cormorant Garamond', serif;
+
+  font-size: 64px;
+  font-weight: 500;
+
+  line-height: 0.9;
+
+  color: var(--wedding-blue);
+  font-variant-numeric: lining-nums;
+  font-feature-settings: 'lnum' 1;
+}
+
+.date .year {
+  margin-top: 10px;
+
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 11px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+
+  color: #aaa69d;
+}
+
+/* =========================
+   TIMELINE
+========================= */
+
+.schedule-day {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 28px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+/* vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+
+  top: 8px;
+  bottom: 12px;
+  left: 7px;
+
+  width: 1px;
+
+  background: var(--line);
+}
+
+/* EVENTS */
+
+.timeline-event {
+  position: relative;
+  padding-bottom: 55px;
+}
+
+.timeline-event:last-child {
+  padding-bottom: 10px;
+}
+
+/* timeline dot */
+
+.timeline-marker {
+  position: absolute;
+
+  width: 14px;
+  height: 14px;
+
+  left: -30px;
+  top: 3px;
+
+  border-radius: 50%;
+
+  /* background: var(--wedding-yellow-soft); */
+  /* border: 3px solid var(--background); */
+
+  /* box-shadow: 0 0 0 1px var(--wedding-blue); */
+
+  z-index: 2;
+
+  background: #ffd928;
+  border: 3px solid #fffdf5;
+  box-shadow: 0 0 0 2px #1246b8;
+}
+
+/* EVENT CONTENT */
+
+.event-time {
+  margin-bottom: 10px;
+
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 2.5px;
+
+  text-transform: uppercase;
+
+  color: #6e6b66;
+}
+
+.event-content h2 {
+  margin: 0 0 14px;
+
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+
+  font-size: 31px;
+  line-height: 1.2;
+
+  font-weight: 500;
+
+  color: var(--wedding-blue);
+}
+
+.event-content p:not(.event-time) {
+  margin-top: 6px;
+
+  max-width: 560px;
+
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 15px;
+  line-height: 1.85;
+
+  font-weight: 400;
+
+  color: #66635e;
+}
+
+.event-map {
+  margin-top: 28px;
+
+  overflow: hidden;
+
+  border-radius: 4px;
+
+  border: 1px solid #e5e1d7;
+}
+
+.event-map iframe {
+  display: block;
+
+  width: 100%;
+  height: 250px;
+
+  border: 0;
+}
+
+/* DETAIL GRID */
+
+.event-details {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.event-details > div {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 7px;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: bold;
+
+  color: var(--wedding-yellow-darker);
+}
+
+/* DAY DIVIDER */
+
+.day-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  margin: 60px 0;
+}
+
+.day-divider::before,
+.day-divider::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+
+  background: #eee;
+}
+
+.day-divider span {
+  color: #d5aa00;
+  font-size: 14px;
+}
+
+.schedule-header h1,
+.event-content h2,
+.date .day {
+  color: var(--wedding-blue);
+}
+
+.eyebrow,
+.date .month,
+.detail-label {
+  color: var(--wedding-yellow);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .schedule-page {
+    padding: 35px 20px;
+  }
+
+  .schedule-header {
+    margin-bottom: 50px;
+  }
+
+  .schedule-header h1 {
+    font-size: 40px;
+  }
+
+  .schedule-day {
+    grid-template-columns: 55px 1fr;
+    gap: 10px;
+  }
+
+  .date .day {
+    font-size: 46px;
+  }
+
+  .date .month {
+    font-size: 11px;
+  }
+
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    left: 6px;
+  }
+
+  .timeline-marker {
+    left: -24px;
+    width: 12px;
+    height: 12px;
+    top: 4px;
+  }
+
+  .event-content h2 {
+    font-size: 21px;
+  }
+
+  .event-details {
+    gap: 18px;
+  }
+
+  .timeline-event {
+    padding-bottom: 45px;
+  }
+}
