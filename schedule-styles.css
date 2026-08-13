@@ -10,25 +10,54 @@
   background-color: #fffcf5;
 
   background-image:
-    /* blue glow — top right */
+  /* blue — top right */
     radial-gradient(
       450px 380px at 95% 4%,
       rgba(35, 85, 180, 0.09),
       transparent 100%
     ),
-    /* blue glow — middle left */
+    /* warm yellow — upper left */
     radial-gradient(
-        420px 500px at -5% 48%,
+        340px 420px at -5% 22%,
+        rgba(230, 175, 0, 0.055),
+        transparent 100%
+      ),
+    /* champagne — upper/middle right */
+    radial-gradient(
+        380px 440px at 105% 36%,
+        rgba(210, 145, 110, 0.04),
+        transparent 100%
+      ),
+    /* blue — middle left */
+    radial-gradient(
+        420px 500px at -5% 49%,
+        rgba(35, 85, 180, 0.065),
+        transparent 100%
+      ),
+    /* yellow — middle right */
+    radial-gradient(
+        350px 430px at 105% 62%,
+        rgba(230, 175, 0, 0.045),
+        transparent 100%
+      ),
+    /* champagne — lower left */
+    radial-gradient(
+        400px 460px at -5% 74%,
+        rgba(210, 145, 110, 0.035),
+        transparent 100%
+      ),
+    /* blue — lower right */
+    radial-gradient(
+        420px 480px at 105% 84%,
         rgba(35, 85, 180, 0.055),
         transparent 100%
       ),
-    /* blue glow — lower right */
+    /* warm yellow — very bottom left */
     radial-gradient(
-        420px 480px at 105% 82%,
-        rgba(35, 85, 180, 0.05),
+        360px 400px at 0% 98%,
+        rgba(230, 175, 0, 0.04),
         transparent 100%
       );
-
   background-repeat: no-repeat;
 }
 
@@ -116,7 +145,7 @@
 
   letter-spacing: 2px;
 
-  color: #aaa69d;
+  color: #6e6b66;
 }
 
 /* =========================
