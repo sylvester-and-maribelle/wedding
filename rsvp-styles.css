@@ -1,12 +1,10 @@
-body.rsvp-container,
-body.rsvp-form {
-  overflow: hidden;
-}
-
 .rsvp-container {
   width: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
 }
 
 .rsvp-container h1 {
@@ -14,20 +12,35 @@ body.rsvp-form {
 }
 
 .rsvp-form {
+  position: relative;
   width: 100%;
-
-  min-height: 650px;
-  border: 0;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  z-index: 0;
 }
 
 .rsvp-form iframe {
+  position: absolute;
+  inset: 0;
+
   width: 100%;
-  min-height: calc(100vh - 120px);
+  height: 100%;
+
   border: 0;
+
+  z-index: 0;
 }
 
-@media (max-width: 600px) {
+/* Prevent Google iframe from stealing navbar taps on phones */
+@media (max-width: 768px) {
   .rsvp-container {
-    overflow: hidden;
+    height: calc(100dvh - 72px - env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 769px) {
+  .rsvp-container {
+    height: calc(100dvh - 90px);
   }
 }

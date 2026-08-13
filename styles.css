@@ -32,10 +32,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  padding-bottom: 60px;
+.page-title {
+  font-weight: 900;
+  color: var(--wedding-blue-dark);
 }
-
 /* -----------------------
        BOTTOM NAV
     ----------------------- */
@@ -55,15 +55,18 @@ body {
   background: rgba(255, 255, 255, 0.96);
   border-top: 1px solid #ddd;
 
-  z-index: 1000;
+  z-index: 9999;
 
-  /* useful for iPhones */
+  pointer-events: auto;
+
+  transform: translateZ(0);
+
   padding-bottom: env(safe-area-inset-bottom);
 }
-
 .nav-item {
   flex: 1;
   height: 100%;
+  position: relative;
 
   border: none;
   background: transparent;
@@ -77,10 +80,13 @@ body {
 
   cursor: pointer;
 
-  color: #999;
+  font-family: 'Montserrat', sans-serif;
+
+  color: #4f4b45;
   font-size: 12px;
 
   transition: 0.2s ease;
+  overflow: hidden;
 }
 
 .nav-item i {
@@ -89,6 +95,29 @@ body {
 
 .nav-item.active {
   color: #1d3fa3;
+}
+
+.nav-item.active::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background: var(--wedding-yellow-bright);
+
+  border-radius: 0 0 3px 3px;
+}
+
+.nav-item:first-child.active::before {
+  border-radius: 22px 0 0 0;
+}
+
+.nav-item:last-child.active::before {
+  border-radius: 0 22px 0 0;
 }
 
 .nav-item:hover {
@@ -124,5 +153,7 @@ body {
     border-radius: 22px;
 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+
+    overflow: hidden;
   }
 }
