@@ -1,0 +1,175 @@
+/* =========================
+   HOME
+========================= */
+
+.home-content {
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: #fffcf5;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  width: 100%;
+
+  height: 80vh;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 28px 28px 100px;
+
+  background-color: #fffcf5;
+
+  background-image: url('../assets/background3.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+
+  overflow: hidden;
+}
+
+/* =========================
+   MONOGRAM
+========================= */
+
+.monogram {
+  display: block;
+
+  width: min(300px, 65vw);
+  height: auto;
+
+  margin-bottom: 25px;
+}
+
+/* =========================
+   HERO TEXT
+========================= */
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  margin: 0 0 12px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
+  letter-spacing: 5px;
+
+  color: var(--wedding-yellow);
+}
+
+.hero-text h1 {
+  margin: 0;
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  line-height: 1;
+
+  font-weight: 500;
+
+  color: var(--wedding-blue-dark);
+}
+
+.hero-text h1 span {
+  color: var(--wedding-yellow);
+  font-style: italic;
+}
+
+.hero-date {
+  margin: 20px 0 0;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+
+  letter-spacing: 3px;
+
+  color: #4f4b45;
+}
+
+.hero-location {
+  margin: 8px 0 0;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+
+  letter-spacing: 2px;
+
+  color: #77716a;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 768px) {
+  .hero {
+    height: auto;
+  }
+
+  .monogram {
+    width: 280px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 767px) {
+  .hero {
+    height: 75dvh;
+
+    padding: 25px 24px 80px;
+
+    background-size: 100% 100%;
+    background-position: center;
+  }
+
+  .monogram {
+    width: min(230px, 68vw);
+
+    margin-bottom: 18px;
+  }
+
+  .hero-text h1 {
+    font-size: 38px;
+  }
+
+  .hero-eyebrow {
+    font-size: 15px;
+    letter-spacing: 4px;
+  }
+
+  .hero-date {
+    font-size: 20px;
+    letter-spacing: 2.5px;
+  }
+
+  .hero-location {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+}
