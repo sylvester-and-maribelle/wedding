@@ -1,0 +1,296 @@
+/* =========================
+   FAQ
+========================= */
+
+.faq-page {
+  max-width: 760px;
+
+  margin: 0 auto;
+  padding: 70px 28px 150px;
+
+  background-color: #fffcf5;
+
+  background-image:
+    radial-gradient(
+      420px 420px at 105% 5%,
+      rgba(35, 85, 180, 0.07),
+      transparent 100%
+    ),
+    radial-gradient(
+      360px 420px at -5% 38%,
+      rgba(230, 175, 0, 0.04),
+      transparent 100%
+    ),
+    radial-gradient(
+      380px 450px at 105% 72%,
+      rgba(210, 145, 110, 0.03),
+      transparent 100%
+    );
+
+  background-repeat: no-repeat;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.faq-header {
+  text-align: center;
+
+  margin-bottom: 60px;
+}
+
+.faq-eyebrow {
+  margin: 0 0 10px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 5px;
+
+  color: var(--wedding-yellow);
+}
+
+.faq-header .page-title {
+  margin: 0;
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px;
+  line-height: 1;
+
+  font-weight: 600;
+
+  color: var(--wedding-blue-dark);
+}
+
+.faq-header > p:last-child {
+  max-width: 540px;
+
+  margin: 18px auto 0;
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  line-height: 1.5;
+
+  font-style: italic;
+
+  color: #77716a;
+}
+
+/* =========================
+   FAQ LIST
+========================= */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+/* =========================
+   FAQ ITEM
+========================= */
+
+.faq-item {
+  overflow: hidden;
+
+  border: 1px solid #e8e1d4;
+  border-radius: 4px;
+
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.faq-item summary {
+  position: relative;
+
+  padding: 20px 55px 20px 22px;
+
+  cursor: pointer;
+
+  list-style: none;
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  line-height: 1.25;
+
+  font-weight: 500;
+
+  color: var(--wedding-blue-dark);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* PLUS / MINUS */
+
+.faq-item summary::after {
+  content: '+';
+
+  position: absolute;
+
+  right: 22px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+
+  color: var(--wedding-yellow);
+
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+/* OPEN ITEM */
+
+.faq-item[open] summary {
+  color: var(--wedding-blue);
+}
+
+/* =========================
+   ANSWER
+========================= */
+
+.faq-answer {
+  padding: 0 22px 22px;
+}
+
+.faq-answer p {
+  margin: 0;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.85;
+
+  color: #5f5a54;
+}
+
+.faq-answer strong {
+  font-weight: 600;
+
+  color: #4d4943;
+}
+
+/* =========================
+   LINK
+========================= */
+
+.faq-link {
+  display: inline-block;
+
+  margin-top: 14px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+
+  color: var(--wedding-blue);
+
+  text-decoration: none;
+
+  border-bottom: 1px solid rgba(29, 63, 163, 0.3);
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.faq-link:hover {
+  color: var(--wedding-yellow-darker);
+
+  border-color: var(--wedding-yellow-darker);
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.faq-contact {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 18px;
+}
+
+.faq-contact span {
+  padding: 7px 13px;
+
+  border: 1px solid #e7ddc9;
+  border-radius: 2px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 1px;
+
+  color: var(--wedding-blue);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 767px) {
+  .faq-page {
+    padding: 55px 20px 130px;
+  }
+
+  .faq-header {
+    margin-bottom: 45px;
+  }
+
+  .faq-header .page-title {
+    font-size: 42px;
+  }
+
+  .faq-header > p:last-child {
+    font-size: 18px;
+  }
+
+  .faq-list {
+    gap: 10px;
+  }
+
+  .faq-item summary {
+    padding: 18px 48px 18px 18px;
+
+    font-size: 20px;
+  }
+
+  .faq-item summary::after {
+    right: 18px;
+
+    font-size: 18px;
+  }
+
+  .faq-answer {
+    padding: 0 18px 20px;
+  }
+
+  .faq-answer p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .faq-contact {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .faq-contact span {
+    text-align: center;
+  }
+}
