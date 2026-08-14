@@ -4,7 +4,7 @@ async function loadNavbar() {
 
   document.getElementById('navbar').innerHTML = html;
 
-  setupNavigation();
+  loadPage('home');
 }
 
 async function loadPage(pageName) {
@@ -13,7 +13,6 @@ async function loadPage(pageName) {
 
   document.getElementById('app').innerHTML = html;
 
-  // Update active navbar item
   document.querySelectorAll('.nav-item').forEach((item) => {
     item.classList.toggle('active', item.dataset.page === pageName);
   });
@@ -24,39 +23,13 @@ async function loadPage(pageName) {
   });
 }
 
-function setupNavigation() {
-  const navItems = document.querySelectorAll('.nav-item');
+/* Handle navbar + buttons inside loaded pages */
+document.addEventListener('click', (event) => {
+  const pageLink = event.target.closest('[data-page]');
 
-  navItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      loadPage(item.dataset.page);
-    });
-  });
+  if (!pageLink) return;
 
-  // Load home when website first opens
-  loadPage('home');
-}
+  loadPage(pageLink.dataset.page);
+});
 
 loadNavbar();
-
-/*
-    // blue glow — top right 
-    radial-gradient(
-      450px 380px at 95% 4%,
-      rgba(35, 85, 180, 0.09),
-      transparent 100%
-    ),
-    // blue glow — middle left
-    radial-gradient(
-        420px 500px at -5% 48%,
-        rgba(35, 85, 180, 0.055),
-        transparent 100%
-      ),
-    //blue glow — lower right 
-    radial-gradient(
-        420px 480px at 105% 82%,
-        rgba(35, 85, 180, 0.05),
-        transparent 100%
-      );
-
-*/

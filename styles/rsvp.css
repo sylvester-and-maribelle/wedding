@@ -5,10 +5,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-}
-
-.rsvp-container h1 {
-  flex-shrink: 0;
+  align-items: center;
 }
 
 .rsvp-form {
@@ -18,6 +15,7 @@
   min-height: 0;
   overflow: hidden;
   z-index: 0;
+  margin-top: 20px;
 }
 
 .rsvp-form iframe {

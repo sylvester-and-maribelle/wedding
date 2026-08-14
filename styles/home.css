@@ -15,7 +15,6 @@
 
 .hero {
   width: 100%;
-
   height: 80vh;
 
   box-sizing: border-box;
@@ -50,6 +49,26 @@
   height: auto;
 
   margin-bottom: 25px;
+
+  animation: monogramEntrance 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes monogramEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+    filter: blur(3px);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 }
 
 /* =========================
@@ -60,6 +79,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  opacity: 0;
+  transform: translateY(12px);
+
+  animation: heroTextEntrance 1.2s ease-out 0.7s forwards;
+}
+
+@keyframes heroTextEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-eyebrow {
@@ -114,10 +145,207 @@
   color: #77716a;
 }
 
-.intro {
-  display: flex;
-  justify-content: center;
+/* =========================
+   HERO RSVP BUTTON
+========================= */
+
+.hero-rsvp {
+  margin-top: 28px;
+
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  min-width: 155px;
+  padding: 13px 24px;
+
+  background: #e5b300;
+  border: 1px solid #e5b300;
+  border-radius: 2px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 3px;
+  text-decoration: none;
+
+  color: #ffffff;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.hero-rsvp span {
+  font-size: 16px;
+  line-height: 1;
+
+  transition: transform 0.25s ease;
+}
+
+.hero-rsvp:hover {
+  background: #f4c900;
+  cursor: pointer;
+  color: var(--wedding-blue-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 7px 20px rgba(190, 145, 0, 0.18);
+}
+
+.hero-rsvp:hover span {
+  transform: translateX(4px);
+}
+
+/* =========================
+   COUPLE NOTE
+========================= */
+
+.couple-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px 160px;
+}
+
+/* Heading */
+
+.couple-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.couple-heading p {
+  margin: 0 0 12px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+
+  color: var(--wedding-yellow);
+}
+
+.couple-heading span {
+  color: var(--wedding-blue);
+  font-size: 12px;
+}
+
+/* Layout */
+
+.couple-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 65px;
+}
+
+/* Photo */
+
+.couple-photo-wrapper {
+  position: relative;
+}
+
+/* little decorative yellow edge */
+.couple-photo-wrapper::before {
+  content: '';
+
+  position: absolute;
+  top: -10px;
+  left: -10px;
+
+  width: 55%;
+  height: 55%;
+
+  border-top: 2px solid var(--wedding-yellow);
+  border-left: 2px solid var(--wedding-yellow);
+
+  z-index: 0;
+}
+
+.couple-photo {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+
+  border-radius: 3px;
+}
+
+/* Message */
+
+.couple-message {
+  font-family: 'Montserrat', sans-serif;
+  color: #5d5953;
+}
+
+.couple-message > p {
+  margin: 0 0 22px;
+
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* Signature */
+
+.couple-signoff {
+  margin-top: 38px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.couple-signoff span {
+  margin-bottom: 4px;
+
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+
+  color: #77716a;
+}
+
+.couple-signoff strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 500;
+
+  color: var(--wedding-blue);
+}
+
+/* Divider */
+
+.msg-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.msg-divider::before,
+.msg-divider::after {
+  content: '';
+
+  height: 1px;
+  flex: 1;
+
+  background: #eee;
+}
+
+.msg-divider span {
+  flex-shrink: 0;
+
+  color: #d5aa00;
+  font-size: 14px;
+  line-height: 1;
 }
 
 /* =========================
@@ -126,11 +354,41 @@
 
 @media (min-width: 768px) {
   .hero {
-    height: auto;
+    height: calc(100dvh - 100px);
+
+    padding: 40px 28px 60px;
   }
 
   .monogram {
     width: 280px;
+  }
+
+  .couple-section {
+    min-height: 100vh;
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 70px 40px 120px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .couple-heading {
+    margin-bottom: 45px;
+  }
+
+  .couple-layout {
+    grid-template-columns: 1fr 0.9fr;
+    gap: 70px;
+  }
+
+  .couple-photo-wrapper {
+    max-width: 420px;
+    width: 100%;
+
+    justify-self: center;
   }
 }
 
@@ -142,7 +400,7 @@
   .hero {
     height: 75dvh;
 
-    padding: 25px 24px 80px;
+    padding: 40px 24px 80px;
 
     background-size: 100% 100%;
     background-position: center;
@@ -171,5 +429,66 @@
   .hero-location {
     font-size: 16px;
     letter-spacing: 2px;
+  }
+
+  .hero-rsvp {
+    margin-top: 22px;
+
+    min-width: 140px;
+    padding: 12px 20px;
+
+    font-size: 10px;
+  }
+
+  .couple-section {
+    padding: 70px 28px 130px;
+  }
+
+  .couple-heading {
+    margin-bottom: 40px;
+  }
+
+  .couple-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 40px;
+  }
+
+  .couple-photo-wrapper {
+    width: 88%;
+    max-width: 360px;
+  }
+
+  .couple-message {
+    width: 100%;
+    max-width: 440px;
+
+    text-align: center;
+  }
+
+  .couple-message > p {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .couple-signoff {
+    margin-top: 30px;
+
+    align-items: center;
+  }
+
+  .couple-signoff strong {
+    font-size: 26px;
+  }
+
+  .msg-divider {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .msg-divider span {
+    font-size: 12px;
   }
 }
