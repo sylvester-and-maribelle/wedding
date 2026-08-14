@@ -400,6 +400,10 @@
   .hero {
     height: 75dvh;
 
+    /* Prevents hero content from being clipped
+       on shorter phones such as iPhone SE */
+    min-height: 620px;
+
     padding: 40px 24px 80px;
 
     background-size: 100% 100%;
@@ -490,5 +494,53 @@
 
   .msg-divider span {
     font-size: 12px;
+  }
+}
+
+/* =========================
+   SHORT MOBILE SCREENS
+   e.g. iPhone SE
+========================= */
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero {
+    min-height: 590px;
+
+    padding: 22px 22px 35px;
+  }
+
+  .monogram {
+    width: min(190px, 58vw);
+
+    margin-bottom: 12px;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 8px;
+
+    font-size: 12px;
+    letter-spacing: 3.5px;
+  }
+
+  .hero-text h1 {
+    font-size: 34px;
+  }
+
+  .hero-date {
+    margin-top: 14px;
+
+    font-size: 17px;
+  }
+
+  .hero-location {
+    margin-top: 6px;
+
+    font-size: 14px;
+  }
+
+  .hero-rsvp {
+    margin-top: 17px;
+
+    padding: 10px 18px;
   }
 }
