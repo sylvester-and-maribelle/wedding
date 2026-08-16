@@ -39,6 +39,9 @@ body {
 /* -----------------------
        BOTTOM NAV
     ----------------------- */
+/* -----------------------
+   BOTTOM NAV
+----------------------- */
 
 .bottom-nav {
   position: fixed;
@@ -46,7 +49,7 @@ body {
   left: 0;
   width: 100%;
 
-  height: 72px;
+  height: 82px;
 
   display: flex;
   justify-content: space-around;
@@ -63,6 +66,7 @@ body {
 
   padding-bottom: env(safe-area-inset-bottom);
 }
+
 .nav-item {
   flex: 1;
   height: 100%;
@@ -76,24 +80,48 @@ body {
   justify-content: center;
   align-items: center;
 
-  gap: 5px;
+  gap: 2px;
 
   cursor: pointer;
 
   font-family: 'Montserrat', sans-serif;
 
   color: #4f4b45;
-  font-size: 12px;
 
   transition: 0.2s ease;
   overflow: hidden;
 }
 
 .nav-item i {
-  font-size: 21px;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.nav-label-en {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  line-height: 1.1;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.nav-label-cn {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 9px;
+  line-height: 1.1;
+  font-weight: 400;
+
+  white-space: nowrap;
+
+  color: #77716a;
 }
 
 .nav-item.active {
+  color: #1d3fa3;
+}
+
+.nav-item.active .nav-label-cn {
   color: #1d3fa3;
 }
 
@@ -124,23 +152,13 @@ body {
   color: #1d3fa3;
 }
 
-/* -----------------------
-       RSVP BUTTON EXAMPLE
-    ----------------------- */
-
-.primary-button {
-  display: inline-block;
-  background: #1d3fa3;
-  color: white;
-  padding: 14px 22px;
-  border-radius: 30px;
-  text-decoration: none;
-  margin-top: 15px;
+.nav-item:hover .nav-label-cn {
+  color: #1d3fa3;
 }
 
 /* -----------------------
-       DESKTOP
-    ----------------------- */
+   DESKTOP
+----------------------- */
 
 @media (min-width: 768px) {
   .bottom-nav {
@@ -148,6 +166,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
     bottom: 20px;
+
+    height: 82px;
 
     border: 1px solid #ddd;
     border-radius: 22px;

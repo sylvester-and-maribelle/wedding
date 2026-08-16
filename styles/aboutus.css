@@ -10,7 +10,9 @@
   background-color: #fffcf5;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .about-header {
   text-align: center;
@@ -39,6 +41,18 @@
   color: var(--wedding-blue-dark);
 }
 
+.about-title-cn {
+  margin: 9px 0 0;
+
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 4px;
+
+  color: var(--wedding-blue);
+}
+
 .about-header > p:last-child {
   margin-top: 20px;
 
@@ -46,10 +60,12 @@
   font-size: 20px;
   font-style: italic;
 
-  color: var(--text-light);
+  color: #5f5a54;
 }
 
-/* STORY */
+/* =========================
+   STORY
+========================= */
 
 .about-story {
   display: grid;
@@ -57,6 +73,26 @@
   gap: 65px;
   align-items: center;
 }
+
+/* second story section */
+
+.about-story-reverse {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.about-story-reverse .about-photo-wrapper {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.about-story-reverse .about-copy {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* =========================
+   PHOTO
+========================= */
 
 .about-photo-wrapper {
   position: relative;
@@ -89,10 +125,27 @@
   border-radius: 3px;
 }
 
+/* =========================
+   STORY TEXT
+========================= */
+
+.story-language {
+  margin: 0 0 12px !important;
+
+  font-family: 'Montserrat', 'Noto Serif SC', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+
+  letter-spacing: 3px;
+
+  color: var(--wedding-yellow) !important;
+}
+
 .about-copy h2 {
   margin: 0 0 22px;
 
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
   font-size: 34px;
   line-height: 1.2;
   font-weight: 500;
@@ -106,21 +159,49 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   line-height: 1.9;
+  font-weight: 400;
 
-  color: #5f5a54;
+  color: #45413d;
 }
+
+/* Mandarin story */
+
+.about-copy .cn-story {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 400;
+
+  color: #45413d;
+}
+
+/* =========================
+   PUNCHLINE
+========================= */
 
 .about-punchline {
   margin-top: 30px !important;
 
   font-family: 'Cormorant Garamond', serif !important;
   font-size: 22px !important;
+  line-height: 1.55 !important;
   font-style: italic;
 
   color: var(--wedding-blue-dark) !important;
 }
 
-/* DIVIDER */
+.cn-punchline {
+  font-family: 'Noto Serif SC', serif !important;
+  font-size: 17px !important;
+  line-height: 1.9 !important;
+  font-style: normal;
+
+  color: var(--wedding-blue-dark) !important;
+}
+
+/* =========================
+   DIVIDER
+========================= */
 
 .about-divider {
   display: flex;
@@ -145,7 +226,9 @@
   font-size: 14px;
 }
 
-/* FUN Q&A */
+/* =========================
+   FUN Q&A
+========================= */
 
 .about-fun {
   text-align: center;
@@ -171,9 +254,9 @@
 .qa-item h3 {
   margin: 0 0 12px;
 
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 23px;
-  line-height: 1.25;
+  font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  font-size: 21px;
+  line-height: 1.5;
   font-weight: 500;
 
   color: var(--wedding-blue);
@@ -182,9 +265,22 @@
 .qa-item p {
   margin: 0;
 
+  font-family: 'Noto Serif SC', 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.85;
+  font-weight: 400;
+
+  color: #45413d;
+}
+
+.qa-en {
+  display: block;
+  margin-top: 8px;
+
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  line-height: 1.8;
+  /* font-size: em; */
+  line-height: 1.6;
+  font-weight: 400;
 
   color: #5f5a54;
 }
@@ -206,11 +302,16 @@
     font-size: 42px;
   }
 
+  .about-title-cn {
+    font-size: 18px;
+  }
+
   .about-header > p:last-child {
     font-size: 20px;
   }
 
-  .about-story {
+  .about-story,
+  .about-story-reverse {
     display: flex;
     flex-direction: column;
 
@@ -231,12 +332,21 @@
   }
 
   .about-copy p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.85;
+  }
+
+  .about-copy .cn-story {
+    font-size: 15px;
+    line-height: 1.95;
   }
 
   .about-punchline {
     font-size: 20px !important;
+  }
+
+  .cn-punchline {
+    font-size: 17px !important;
   }
 
   .about-divider {
@@ -253,10 +363,10 @@
   }
 
   .qa-item h3 {
-    font-size: 21px;
+    font-size: 20px;
   }
 
   .qa-item p {
-    font-size: 13px;
+    font-size: 15px;
   }
 }

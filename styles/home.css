@@ -142,7 +142,7 @@
 
   letter-spacing: 2px;
 
-  color: #77716a;
+  color: #5f5a54;
 }
 
 /* =========================
@@ -250,6 +250,7 @@
 }
 
 /* little decorative yellow edge */
+
 .couple-photo-wrapper::before {
   content: '';
 
@@ -279,11 +280,15 @@
   border-radius: 3px;
 }
 
-/* Message */
+/* =========================
+   MESSAGE
+========================= */
 
 .couple-message {
   font-family: 'Montserrat', sans-serif;
-  color: #5d5953;
+
+  /* darker for readability without making it bold */
+  color: #45413d;
 }
 
 .couple-message > p {
@@ -291,9 +296,25 @@
 
   font-size: 15px;
   line-height: 1.9;
+  font-weight: 400;
 }
 
-/* Signature */
+.couple-message .cn {
+  display: block;
+  margin-top: 8px;
+
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  line-height: 1.9;
+  font-weight: 400;
+
+  /* same readable contrast as English */
+  color: #45413d;
+}
+
+/* =========================
+   SIGNATURE
+========================= */
 
 .couple-signoff {
   margin-top: 38px;
@@ -309,7 +330,7 @@
   font-size: 18px;
   font-style: italic;
 
-  color: #77716a;
+  color: #5f5a54;
 }
 
 .couple-signoff strong {
@@ -320,7 +341,9 @@
   color: var(--wedding-blue);
 }
 
-/* Divider */
+/* =========================
+   DIVIDER
+========================= */
 
 .msg-divider {
   display: flex;
@@ -473,8 +496,13 @@
   }
 
   .couple-message > p {
-    font-size: 14px;
-    line-height: 1.85;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .couple-message .cn {
+    font-size: 15px;
+    line-height: 1.9;
   }
 
   .couple-signoff {

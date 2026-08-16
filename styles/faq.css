@@ -64,18 +64,113 @@
   color: var(--wedding-blue-dark);
 }
 
-.faq-header > p:last-child {
+/* Chinese page title */
+
+.page-title-cn {
+  margin: 8px 0 0;
+
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  color: var(--wedding-blue);
+}
+
+.faq-header > p:last-of-type {
   max-width: 540px;
 
   margin: 18px auto 0;
 
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
-  line-height: 1.5;
+  font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.7;
 
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
 
-  color: #77716a;
+  color: #5f5a54;
+}
+
+/* =========================
+   LANGUAGE NAVIGATION
+========================= */
+
+.faq-language-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.faq-language-nav a {
+  min-width: 105px;
+
+  padding: 10px 16px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e4dccd;
+  border-radius: 2px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  font-family: 'Montserrat', 'Noto Serif SC', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 500;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: var(--wedding-blue);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.faq-language-nav a:hover {
+  border-color: var(--wedding-yellow);
+
+  background: #fffdf7;
+
+  transform: translateY(-1px);
+}
+
+/* =========================
+   LANGUAGE SECTIONS
+========================= */
+
+.faq-language-section {
+  scroll-margin-top: 100px;
+}
+
+.faq-section-heading {
+  margin-bottom: 28px;
+
+  text-align: center;
+}
+
+.faq-section-heading .faq-eyebrow {
+  margin-bottom: 6px;
+}
+
+.faq-section-heading h2 {
+  margin: 0;
+
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 500;
+
+  color: var(--wedding-blue);
 }
 
 /* =========================
@@ -111,9 +206,9 @@
 
   list-style: none;
 
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
   font-size: 22px;
-  line-height: 1.25;
+  line-height: 1.35;
 
   font-weight: 500;
 
@@ -124,7 +219,9 @@
   display: none;
 }
 
-/* PLUS / MINUS */
+/* =========================
+   PLUS / MINUS
+========================= */
 
 .faq-item summary::after {
   content: '+';
@@ -149,8 +246,6 @@
   content: '−';
 }
 
-/* OPEN ITEM */
-
 .faq-item[open] summary {
   color: var(--wedding-blue);
 }
@@ -166,17 +261,18 @@
 .faq-answer p {
   margin: 0;
 
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-family: 'Montserrat', 'Noto Serif SC', sans-serif;
+  font-size: 15px;
   line-height: 1.85;
+  font-weight: 400;
 
-  color: #5f5a54;
+  color: #45413d;
 }
 
 .faq-answer strong {
   font-weight: 600;
 
-  color: #4d4943;
+  color: #3f3b37;
 }
 
 /* =========================
@@ -188,11 +284,11 @@
 
   margin-top: 14px;
 
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-family: 'Montserrat', 'Noto Serif SC', sans-serif;
+  font-size: 13px;
   font-weight: 600;
 
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 
   color: var(--wedding-blue);
 
@@ -209,6 +305,37 @@
   color: var(--wedding-yellow-darker);
 
   border-color: var(--wedding-yellow-darker);
+}
+
+/* =========================
+   SECTION DIVIDER
+========================= */
+
+.faq-section-divider {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin: 75px 0;
+}
+
+.faq-section-divider::before,
+.faq-section-divider::after {
+  content: '';
+
+  flex: 1;
+  height: 1px;
+
+  background: #eee;
+}
+
+.faq-section-divider span {
+  flex-shrink: 0;
+
+  color: #d5aa00;
+  font-size: 14px;
+  line-height: 1;
 }
 
 /* =========================
@@ -229,7 +356,7 @@
   border: 1px solid #e7ddc9;
   border-radius: 2px;
 
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', 'Noto Serif SC', sans-serif;
   font-size: 11px;
   font-weight: 500;
 
@@ -255,18 +382,55 @@
     font-size: 42px;
   }
 
-  .faq-header > p:last-child {
-    font-size: 18px;
+  .page-title-cn {
+    font-size: 17px;
+    letter-spacing: 3px;
   }
+
+  .faq-header > p:last-of-type {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* LANGUAGE NAV */
+
+  .faq-language-nav {
+    margin-top: 24px;
+
+    gap: 10px;
+  }
+
+  .faq-language-nav a {
+    min-width: 100px;
+
+    padding: 10px 14px;
+
+    font-size: 12px;
+  }
+
+  /* SECTION TITLE */
+
+  .faq-section-heading {
+    margin-bottom: 24px;
+  }
+
+  .faq-section-heading h2 {
+    font-size: 28px;
+  }
+
+  /* FAQ LIST */
 
   .faq-list {
     gap: 10px;
   }
 
+  /* FAQ ITEM */
+
   .faq-item summary {
     padding: 18px 48px 18px 18px;
 
     font-size: 20px;
+    line-height: 1.4;
   }
 
   .faq-item summary::after {
@@ -275,14 +439,29 @@
     font-size: 18px;
   }
 
+  /* ANSWER */
+
   .faq-answer {
     padding: 0 18px 20px;
   }
 
   .faq-answer p {
-    font-size: 13px;
-    line-height: 1.8;
+    font-size: 15px;
+    line-height: 1.85;
   }
+
+  .faq-link {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* DIVIDER */
+
+  .faq-section-divider {
+    margin: 60px 0;
+  }
+
+  /* CONTACT */
 
   .faq-contact {
     flex-direction: column;
