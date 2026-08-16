@@ -5,7 +5,7 @@
 .about-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 70px 40px 150px;
+  padding: 70px 40px 0px;
 
   background-color: #fffcf5;
 }
@@ -291,7 +291,7 @@
 
 @media (max-width: 767px) {
   .about-page {
-    padding: 60px 28px 130px;
+    padding: 60px 28px 0px;
   }
 
   .about-header {
@@ -368,5 +368,38 @@
 
   .qa-item p {
     font-size: 15px;
+  }
+}
+.site-credit {
+  margin-top: 80px;
+  padding: 30px 20px 120px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  text-align: center;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 1px;
+
+  color: #8a857e;
+}
+
+.site-credit span:last-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+
+  color: var(--wedding-blue);
+}
+
+@media (max-width: 767px) {
+  .site-credit {
+    padding-bottom: 100px;
   }
 }
