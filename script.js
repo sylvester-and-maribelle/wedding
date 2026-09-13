@@ -1,17 +1,30 @@
+const LAST_PAGE_KEY = 'weddingWebsiteLastPage';
+const validPages = ['home', 'aboutus', 'schedule', 'faq', 'rsvp'];
+
 async function loadNavbar() {
   const response = await fetch('navbar.html');
   const html = await response.text();
 
   document.getElementById('navbar').innerHTML = html;
 
-  loadPage('home');
+  const savedPage = localStorage.getItem(LAST_PAGE_KEY);
+  const initialPage = validPages.includes(savedPage) ? savedPage : 'home';
+
+  loadPage(initialPage);
 }
 
 async function loadPage(pageName) {
+  // Prevent invalid or outdated saved page names
+  if (!validPages.includes(pageName)) {
+    pageName = 'home';
+  }
+
   const response = await fetch(`pages/${pageName}.html`);
   const html = await response.text();
 
   document.getElementById('app').innerHTML = html;
+  // Remember the page only after it loads successfully
+  localStorage.setItem(LAST_PAGE_KEY, pageName);
 
   /*
    * Initialize page-specific features after the page HTML

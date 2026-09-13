@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>Share Your Photos | Sylvester & Maribelle</title>
+
+    <!-- Your existing wedding stylesheet if you want -->
+    <link rel="stylesheet" href="../style.css" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+        background: #fffdf7;
+      }
+
+      body {
+        min-height: 100vh;
+      }
+
+      .photo-upload-page {
+        width: 100%;
+        min-height: 100vh;
+
+        margin: 0;
+        padding: 60px 24px 100px;
+
+        text-align: center;
+
+        background:
+          radial-gradient(
+            500px 420px at 90% 5%,
+            rgba(35, 85, 180, 0.12) 0%,
+            rgba(35, 85, 180, 0.05) 45%,
+            transparent 100%
+          ),
+          radial-gradient(
+            380px 420px at 0% 80%,
+            rgba(230, 175, 0, 0.08) 0%,
+            transparent 70%
+          ),
+          #fffdf7;
+      }
+
+      .photo-monogram {
+        display: flex;
+        justify-content: center;
+      }
+
+      .monogram {
+        width: 100px;
+      }
+
+      .photo-couple-name {
+        margin: 0 0 14px;
+
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+
+        color: #183f9e;
+      }
+
+      .photo-upload-page h1 {
+        margin: 0 0 12px;
+
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 42px;
+        line-height: 1.1;
+
+        color: #17295d;
+      }
+
+      .photo-date {
+        margin: 0 0 30px;
+
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+
+        color: #6c6c6c;
+      }
+
+      .photo-intro {
+        max-width: 470px;
+        margin: 0 auto 34px;
+
+        line-height: 1.7;
+        color: #444;
+      }
+
+      .photo-intro-cn {
+        display: block;
+        margin-top: 14px;
+      }
+
+      .upload-card {
+        padding: 28px 22px;
+
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 20px;
+
+        box-shadow: 0 10px 35px rgba(20, 45, 90, 0.09);
+      }
+
+      #photoInput {
+        display: none;
+      }
+
+      .select-photo-button,
+      .upload-photo-button {
+        padding: 17px 20px;
+
+        border: none;
+        border-radius: 12px;
+
+        font-size: 17px;
+        font-weight: 600;
+
+        cursor: pointer;
+      }
+
+      .select-photo-button {
+        display: block;
+        background: #183f9e;
+        color: white;
+      }
+
+      .upload-photo-button {
+        display: none;
+        margin-top: 12px;
+
+        background: #ffd83d;
+        color: #17295d;
+      }
+
+      .upload-photo-button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      #selectedCount {
+        min-height: 22px;
+        margin-top: 16px;
+
+        font-size: 14px;
+        color: #555;
+      }
+
+      .progress-track {
+        display: none;
+
+        width: 100%;
+        height: 9px;
+
+        margin-top: 24px;
+
+        overflow: hidden;
+
+        background: #e7e7e7;
+        border-radius: 20px;
+      }
+
+      .progress-bar {
+        width: 0%;
+        height: 100%;
+
+        background: #183f9e;
+
+        transition: width 0.2s ease;
+      }
+
+      #uploadStatus {
+        margin-top: 20px;
+
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .upload-success {
+        color: #217042;
+        font-weight: 600;
+      }
+
+      .upload-error {
+        color: #a62d2d;
+      }
+
+      .privacy-text {
+        margin: 26px auto 0;
+
+        font-size: 12px;
+        line-height: 1.6;
+
+        color: #777;
+      }
+
+      @media (max-width: 480px) {
+        .photo-upload-page h1 {
+          font-size: 36px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="photo-upload-page">
+      <div class="photo-monogram">
+        <img
+          class="monogram"
+          src="../assets/monogram2.png"
+          alt="M and S wedding monogram"
+        />
+      </div>
+
+      <p class="photo-couple-name">SYLVESTER &amp; MARIBELLE</p>
+
+      <h1>Share Your Photos 📸</h1>
+
+      <p class="photo-date">JULY 16–17, 2027 · KOTA KINABALU</p>
+
+      <p class="photo-intro">
+        Help us capture our wedding from your point of view! Upload the photos
+        you took and share these memories with us.
+
+        <span class="photo-intro-cn">
+          与我们分享您镜头下的婚礼时刻！<br />
+          欢迎上传您拍下的照片，与我们一起珍藏这些美好回忆。
+        </span>
+      </p>
+
+      <section class="upload-card">
+        <label for="photoInput" class="select-photo-button" id="selectButton">
+          Select Photos / 选择照片
+        </label>
+
+        <input
+          id="photoInput"
+          type="file"
+          accept="image/*,.heic,.heif"
+          multiple
+        />
+
+        <div id="selectedCount"></div>
+
+        <button class="upload-photo-button" id="uploadButton" type="button">
+          Upload Photos / 上传照片
+        </button>
+
+        <div class="progress-track" id="progressTrack">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div id="uploadStatus"></div>
+      </section>
+
+      <p class="privacy-text">
+        Photos uploaded here are shared privately with Maribelle &amp;
+        Sylvester.
+        <br />
+        上传的照片仅供新人珍藏，不公开显示。
+      </p>
+    </main>
+
+    <script>
+      // =============================================
+      // CHANGE THIS TO YOUR CLOUDFLARE WORKER URL
+      // =============================================
+
+      const WORKER_URL =
+        'https://wedding-photo-upload.maribelleleongzz.workers.dev';
+
+      // =============================================
+      // SETTINGS
+      // =============================================
+
+      const MAX_FILES = 30;
+
+      const MAX_FILE_SIZE = 20 * 1024 * 1024;
+
+      const UPLOAD_TOKEN = 'SM-2027-loveforever0717';
+
+      // =============================================
+      // ELEMENTS
+      // =============================================
+
+      const photoInput = document.getElementById('photoInput');
+
+      const uploadButton = document.getElementById('uploadButton');
+
+      const selectButton = document.getElementById('selectButton');
+
+      const selectedCount = document.getElementById('selectedCount');
+
+      const uploadStatus = document.getElementById('uploadStatus');
+
+      const progressTrack = document.getElementById('progressTrack');
+
+      const progressBar = document.getElementById('progressBar');
+
+      // =============================================
+      // PHOTO SELECTION
+      // =============================================
+
+      photoInput.addEventListener('change', () => {
+        const files = [...photoInput.files];
+
+        uploadStatus.innerHTML = '';
+
+        progressTrack.style.display = 'none';
+
+        progressBar.style.width = '0%';
+
+        if (!files.length) {
+          selectedCount.textContent = '';
+
+          uploadButton.style.display = 'none';
+
+          return;
+        }
+
+        if (files.length > MAX_FILES) {
+          selectedCount.innerHTML =
+            '<span class="upload-error">' +
+            'Please select no more than ' +
+            MAX_FILES +
+            ' photos at once.<br>' +
+            '每次最多请选择 ' +
+            MAX_FILES +
+            ' 张照片。' +
+            '</span>';
+
+          uploadButton.style.display = 'none';
+
+          return;
+        }
+
+        const tooLarge = files.filter((file) => file.size > MAX_FILE_SIZE);
+
+        if (tooLarge.length) {
+          selectedCount.innerHTML =
+            '<span class="upload-error">' +
+            'Each photo must be 20 MB or smaller.' +
+            '<br>' +
+            '每张照片不可超过 20 MB。' +
+            '</span>';
+
+          uploadButton.style.display = 'none';
+
+          return;
+        }
+
+        selectedCount.textContent =
+          files.length +
+          (files.length === 1 ? ' photo selected' : ' photos selected');
+
+        uploadButton.textContent =
+          'Upload ' +
+          files.length +
+          (files.length === 1 ? ' Photo' : ' Photos') +
+          ' / 上传照片';
+
+        uploadButton.style.display = 'block';
+      });
+
+      // =============================================
+      // UPLOAD
+      // =============================================
+
+      uploadButton.addEventListener('click', async () => {
+        const files = [...photoInput.files];
+
+        if (!files.length) {
+          return;
+        }
+
+        uploadButton.disabled = true;
+
+        selectButton.style.pointerEvents = 'none';
+
+        selectButton.style.opacity = '0.55';
+
+        progressTrack.style.display = 'block';
+
+        let uploaded = 0;
+
+        let failed = 0;
+
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+
+          uploadStatus.className = '';
+
+          uploadStatus.textContent =
+            'Uploading ' + (i + 1) + ' of ' + files.length + '...';
+
+          try {
+            const response = await fetch(WORKER_URL + '/upload', {
+              method: 'POST',
+
+              headers: {
+                'Content-Type': file.type || 'image/jpeg',
+
+                'X-File-Name': encodeURIComponent(file.name),
+
+                'X-Upload-Token': UPLOAD_TOKEN,
+              },
+
+              body: file,
+            });
+
+            if (!response.ok) {
+              throw new Error('Upload failed');
+            }
+
+            uploaded++;
+          } catch (error) {
+            console.error('Upload failed:', file.name, error);
+
+            failed++;
+          }
+
+          const percentage = Math.round(((i + 1) / files.length) * 100);
+
+          progressBar.style.width = percentage + '%';
+        }
+
+        // =========================================
+        // RESULT
+        // =========================================
+
+        if (failed === 0) {
+          uploadStatus.className = 'upload-success';
+
+          uploadStatus.innerHTML =
+            '✓ All ' +
+            uploaded +
+            ' photos uploaded successfully!' +
+            '<br><br>' +
+            'Thank you for sharing ' +
+            'these memories with us. 💛💙' +
+            '<br><br>' +
+            '照片上传成功！' +
+            '<br>' +
+            '谢谢您与我们分享这些美好回忆。';
+        } else {
+          uploadStatus.className = 'upload-error';
+
+          uploadStatus.innerHTML =
+            uploaded +
+            ' photo(s) uploaded successfully.' +
+            '<br>' +
+            failed +
+            ' photo(s) could not be uploaded.' +
+            '<br><br>' +
+            'Please select the failed photos ' +
+            'and try again.';
+        }
+
+        // =========================================
+        // RESET
+        // =========================================
+
+        photoInput.value = '';
+
+        selectedCount.textContent = '';
+
+        uploadButton.style.display = 'none';
+
+        uploadButton.disabled = false;
+
+        selectButton.style.pointerEvents = 'auto';
+
+        selectButton.style.opacity = '1';
+      });
+    </script>
+  </body>
+</html>
