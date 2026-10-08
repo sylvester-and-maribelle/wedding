@@ -1,10 +1,14 @@
 /* =========================
+
    SCHEDULE
+
 ========================= */
 
 .schedule-page {
   max-width: 760px;
+
   margin: 0 auto;
+
   padding: 60px 28px 140px;
 
   background-color: #fffcf5;
@@ -12,41 +16,49 @@
   background-image:
     radial-gradient(
       450px 380px at 95% 4%,
+
       rgba(35, 85, 180, 0.09),
       transparent 100%
     ),
     radial-gradient(
       340px 420px at -5% 22%,
+
       rgba(230, 175, 0, 0.055),
       transparent 100%
     ),
     radial-gradient(
       380px 440px at 105% 36%,
+
       rgba(210, 145, 110, 0.04),
       transparent 100%
     ),
     radial-gradient(
       420px 500px at -5% 49%,
+
       rgba(35, 85, 180, 0.065),
       transparent 100%
     ),
     radial-gradient(
       350px 430px at 105% 62%,
+
       rgba(230, 175, 0, 0.045),
       transparent 100%
     ),
     radial-gradient(
       400px 460px at -5% 74%,
+
       rgba(210, 145, 110, 0.035),
       transparent 100%
     ),
     radial-gradient(
       420px 480px at 105% 84%,
+
       rgba(35, 85, 180, 0.055),
       transparent 100%
     ),
     radial-gradient(
       360px 400px at 0% 98%,
+
       rgba(230, 175, 0, 0.04),
       transparent 100%
     );
@@ -55,11 +67,14 @@
 }
 
 /* =========================
+
    HEADER
+
 ========================= */
 
 .schedule-header {
   text-align: center;
+
   margin-bottom: 75px;
 }
 
@@ -67,8 +82,11 @@
   margin: 8px 0 0;
 
   font-family: 'Noto Serif SC', serif;
+
   font-size: 18px;
+
   font-weight: 500;
+
   letter-spacing: 4px;
 
   color: var(--wedding-blue);
@@ -78,7 +96,9 @@
   margin-bottom: 10px;
 
   font-family: 'Montserrat', sans-serif;
+
   font-size: 11px;
+
   font-weight: 900;
 
   letter-spacing: 5px;
@@ -92,8 +112,11 @@
   margin: 0;
 
   font-family: 'Cormorant Garamond', serif;
+
   font-size: 64px;
+
   line-height: 1;
+
   font-weight: 900;
 
   color: var(--wedding-blue-dark);
@@ -103,18 +126,23 @@
   margin-top: 18px;
 
   font-family: 'Cormorant Garamond', serif;
+
   font-size: 20px;
+
   font-style: italic;
 
   color: #5f5a54;
 }
 
 /* =========================
+
    EACH DATE
+
 ========================= */
 
 .date {
   display: flex;
+
   flex-direction: column;
 }
 
@@ -122,6 +150,7 @@
   font-family: 'Montserrat', sans-serif;
 
   font-size: 11px;
+
   font-weight: 500;
 
   letter-spacing: 4px;
@@ -133,6 +162,7 @@
   font-family: 'Cormorant Garamond', serif;
 
   font-size: 64px;
+
   font-weight: 500;
 
   line-height: 0.9;
@@ -140,6 +170,7 @@
   color: var(--wedding-blue);
 
   font-variant-numeric: lining-nums;
+
   font-feature-settings: 'lnum' 1;
 }
 
@@ -149,6 +180,7 @@
   font-family: 'Montserrat', sans-serif;
 
   font-size: 11px;
+
   font-weight: 400;
 
   letter-spacing: 2px;
@@ -157,17 +189,22 @@
 }
 
 /* =========================
+
    TIMELINE
+
 ========================= */
 
 .schedule-day {
   display: grid;
+
   grid-template-columns: 90px 1fr;
+
   gap: 28px;
 }
 
 .timeline {
   position: relative;
+
   padding-left: 30px;
 }
 
@@ -179,7 +216,9 @@
   position: absolute;
 
   top: 8px;
+
   bottom: 12px;
+
   left: 7px;
 
   width: 1px;
@@ -188,11 +227,14 @@
 }
 
 /* =========================
+
    EVENTS
+
 ========================= */
 
 .timeline-event {
   position: relative;
+
   padding-bottom: 55px;
 }
 
@@ -206,9 +248,11 @@
   position: absolute;
 
   width: 14px;
+
   height: 14px;
 
   left: -30px;
+
   top: 3px;
 
   border-radius: 50%;
@@ -216,12 +260,16 @@
   z-index: 2;
 
   background: #ffd928;
+
   border: 3px solid #fffdf5;
+
   box-shadow: 0 0 0 2px #1246b8;
 }
 
 /* =========================
+
    EVENT CONTENT
+
 ========================= */
 
 .event-time {
@@ -230,6 +278,7 @@
   font-family: 'Montserrat', sans-serif;
 
   font-size: 11px;
+
   font-weight: 600;
 
   letter-spacing: 2.5px;
@@ -245,6 +294,7 @@
   font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
 
   font-size: 31px;
+
   line-height: 1.2;
 
   font-weight: 900;
@@ -260,6 +310,7 @@
   font-family: 'Montserrat', sans-serif;
 
   font-size: 15px;
+
   line-height: 1.85;
 
   font-weight: 400;
@@ -268,7 +319,9 @@
 }
 
 /* =========================
+
    MAP
+
 ========================= */
 
 .event-map {
@@ -285,19 +338,23 @@
   display: block;
 
   width: 100%;
+
   height: 250px;
 
   border: 0;
 }
 
 /* =========================
+
    DETAIL GRID
+
 ========================= */
 
 .event-details {
   margin-top: 25px;
 
   display: flex;
+
   flex-direction: column;
 
   padding-top: 20px;
@@ -309,30 +366,39 @@
 
 .event-details > div {
   display: flex;
+
   flex-direction: column;
 
   padding-bottom: 7px;
 
   font-family: 'Montserrat', sans-serif;
+
   font-size: 14px;
+
   line-height: 1.6;
+
   font-weight: 400;
 }
 
 .detail-label {
   font-size: 10px;
+
   letter-spacing: 2px;
+
   font-weight: 600;
 
   color: var(--wedding-yellow);
 }
 
 /* =========================
+
    DAY DIVIDER
+
 ========================= */
 
 .day-divider {
   display: flex;
+
   align-items: center;
 
   gap: 15px;
@@ -345,6 +411,7 @@
   content: '';
 
   height: 1px;
+
   flex: 1;
 
   background: #eee;
@@ -368,7 +435,9 @@
 }
 
 /* =========================
+
    MOBILE
+
 ========================= */
 
 @media (max-width: 600px) {
@@ -382,6 +451,7 @@
 
   .schedule-day {
     grid-template-columns: 55px 1fr;
+
     gap: 10px;
   }
 
@@ -405,6 +475,7 @@
     left: -24px;
 
     width: 12px;
+
     height: 12px;
 
     top: 4px;
@@ -416,6 +487,7 @@
 
   .event-content p:not(.event-time) {
     font-size: 15px;
+
     line-height: 1.85;
   }
 
@@ -425,6 +497,7 @@
 
   .event-details > div {
     font-size: 14px;
+
     line-height: 1.6;
   }
 
@@ -434,48 +507,66 @@
 }
 
 /* =========================
+
    ATTIRE GUIDE
+
 ========================= */
 
 .attire-section {
   width: 100%;
+
   max-width: 900px;
 
   margin: 0 auto;
+
   padding: 60px 0 0;
 
   box-sizing: border-box;
+}
 
+.attire-container {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
+  flex: 1;
 
   gap: 45px;
 }
 
 /* =========================
+
    IMAGE
+
 ========================= */
 
 .attire-image {
   display: block;
 
   width: 60%;
+
   max-width: 620px;
+
   height: auto;
 
   flex-shrink: 0;
 }
 
 /* =========================
+
    TEXT
+
 ========================= */
 
 .attire-text {
   width: 40%;
+
   max-width: 280px;
 
   margin: 0;
+
   padding: 0;
 
   text-align: center;
@@ -485,7 +576,9 @@
   margin: 0 0 20px;
 
   font-family: 'Cormorant Garamond', serif;
+
   font-size: 20px;
+
   line-height: 1.15;
 
   font-weight: 500;
@@ -505,6 +598,7 @@
   font-family: 'Montserrat', sans-serif;
 
   font-size: 15px;
+
   line-height: 1.8;
 
   font-weight: 400;
@@ -513,14 +607,27 @@
 }
 
 /* =========================
+
    MOBILE
+
 ========================= */
 
 @media (max-width: 767px) {
   .attire-section {
     padding: 45px 0 0;
 
+    /* flex-direction: column;
+
+    align-items: center;
+
+    gap: 30px; */
+  }
+
+  .attire-container {
+    display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     gap: 30px;
@@ -528,15 +635,19 @@
 
   .attire-image {
     width: 100%;
+
     max-width: 100%;
+
     height: auto;
   }
 
   .attire-text {
     width: 100%;
+
     max-width: 400px;
 
     margin: 0 auto;
+
     padding: 0 15px;
 
     box-sizing: border-box;
@@ -546,11 +657,189 @@
     margin-bottom: 14px;
 
     font-size: 20px;
+
     line-height: 1.15;
   }
 
   .attire-description {
     font-size: 15px;
+
     line-height: 1.8;
+  }
+}
+
+.attire-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 24px;
+
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 48px auto 32px;
+}
+
+.attire-heading h2 {
+  margin: 0;
+
+  color: #193759;
+
+  font-family: Georgia, 'Times New Roman', serif;
+
+  font-size: clamp(22px, 3.5vw, 38px);
+
+  font-weight: 400;
+
+  letter-spacing: 0.18em;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+.attire-heading__line {
+  height: 1px;
+
+  flex: 1;
+
+  background-color: #cda75d;
+}
+
+@media (max-width: 600px) {
+  .attire-heading {
+    gap: 12px;
+
+    margin: 32px auto 24px;
+  }
+
+  .attire-heading h2 {
+    font-size: 20px;
+
+    letter-spacing: 0.12em;
+  }
+}
+
+/* =======================================================
+   CONSISTENT TYPOGRAPHY & COLOUR
+   Layout, spacing, widths, timeline, maps, and responsive
+   arrangement are preserved from the original stylesheet.
+======================================================= */
+.schedule-page {
+  /* --schedule-navy: #193759; */
+  --schedule-navy: #1246b8;
+  --schedule-blue: #1246b8;
+  --schedule-gold: #a77c16; /* darker gold for legibility */
+  --schedule-ink: #403e3b;
+  --schedule-muted: #625d56;
+  --schedule-line: #e5e1d7;
+  color: var(--schedule-ink);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Page header and date numbers: same editorial serif */
+.schedule-page .page-title,
+.schedule-page .date .day,
+.schedule-page .event-content h2,
+.schedule-page .attire-type,
+.schedule-page .attire-heading h2 {
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', Georgia, serif;
+  color: var(--schedule-navy);
+}
+.schedule-page .page-title {
+  font-weight: 700;
+}
+.schedule-page .page-title-cn {
+  font-family: 'Noto Serif SC', serif;
+  color: var(--schedule-navy);
+  font-size: 18px;
+}
+.schedule-page .schedule-header .eyebrow,
+.schedule-page .date .month {
+  color: var(--wedding-yellow);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.schedule-page .tagline {
+  color: var(--schedule-muted);
+}
+.schedule-page .date .year,
+.schedule-page .event-time {
+  color: var(--schedule-muted);
+  font-size: 13px;
+}
+
+/* Body copy: one consistent readable size */
+.schedule-page .event-content p:not(.event-time),
+.schedule-page .attire-description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  font-weight: 400;
+  color: var(--schedule-ink);
+}
+.schedule-page .event-content h2 {
+  font-weight: 700;
+}
+
+/* Practical info: labels and values are visibly readable */
+.schedule-page .event-details .detail-label {
+  font-family: 'Montserrat', 'Noto Sans SC', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--schedule-blue);
+}
+.schedule-page .event-details > div:not(.event-map) {
+  font-family: 'Montserrat', 'Noto Sans SC', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  color: var(--schedule-ink);
+}
+.schedule-page .event-details > div:not(.event-map) > span:not(.detail-label) {
+  color: var(--schedule-ink);
+}
+
+/* Attire wording should match the same hierarchy */
+.schedule-page .attire-type {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.schedule-page .attire-type span {
+  color: var(--schedule-gold);
+}
+.schedule-page .attire-heading h2 {
+  color: var(--schedule-navy);
+}
+.schedule-page .attire-heading__line {
+  background-color: #cda75d;
+}
+.schedule-page .day-divider span {
+  color: var(--schedule-gold);
+}
+
+@media (max-width: 600px) {
+  .schedule-page .page-title-cn {
+    font-size: 17px;
+  }
+  .schedule-page .event-content p:not(.event-time),
+  .schedule-page .attire-description {
+    font-size: 15px;
+  }
+  .schedule-page .event-details .detail-label {
+    font-size: 12px;
+  }
+  .schedule-page .event-details > div:not(.event-map) {
+    font-size: 16px;
+  }
+  .schedule-page .attire-type {
+    font-size: 22px;
   }
 }
