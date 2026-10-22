@@ -484,6 +484,7 @@
 
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  cursor: pointer;
 }
 
 .carousel-slide img {
