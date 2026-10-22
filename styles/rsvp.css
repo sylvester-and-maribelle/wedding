@@ -30,10 +30,39 @@
   z-index: 0;
 }
 
-/* Prevent Google iframe from stealing navbar taps on phones */
+.rsvp-open-form {
+  display: none;
+}
+
+/* Taller mobile embed lets guests scroll the page around the form. */
 @media (max-width: 768px) {
   .rsvp-container {
-    height: calc(100dvh - 72px - env(safe-area-inset-bottom));
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    padding-bottom: calc(102px + env(safe-area-inset-bottom));
+  }
+
+  .rsvp-open-form {
+    display: block;
+    flex: none;
+    margin: 12px 16px 0;
+    color: var(--wedding-blue);
+    font-size: 13px;
+    line-height: 1.6;
+    text-underline-offset: 3px;
+  }
+
+  .rsvp-form {
+    flex: none;
+    overflow: visible;
+    margin-top: 12px;
+  }
+
+  .rsvp-form iframe {
+    position: static;
+    display: block;
+    height: 2200px;
   }
 }
 
