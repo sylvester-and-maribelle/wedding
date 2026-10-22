@@ -5,6 +5,7 @@ const validPages = ['home', 'aboutus', 'schedule', 'faq', 'rsvp'];
 const CAROUSEL_INTERVAL = 4000; // 4 seconds
 
 let cleanupCarousel = null;
+let cleanupScrollReveal = null;
 let pageLoadId = 0;
 
 /* =========================
@@ -50,6 +51,11 @@ async function loadPage(pageName) {
     }
 
     // Clean up the previous carousel
+    if (cleanupScrollReveal) {
+      cleanupScrollReveal();
+      cleanupScrollReveal = null;
+    }
+
     if (cleanupCarousel) {
       cleanupCarousel();
       cleanupCarousel = null;
@@ -71,6 +77,8 @@ async function loadPage(pageName) {
       top: 0,
       behavior: 'instant',
     });
+
+    cleanupScrollReveal = initializeScrollReveal();
   } catch (error) {
     console.error('Page loading error:', error);
   }
@@ -91,6 +99,85 @@ document.addEventListener('click', (event) => {
 
   loadPage(pageLink.dataset.page);
 });
+
+/* =========================
+   GENTLE SCROLL REVEALS
+========================= */
+
+function initializeScrollReveal() {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (
+    reducedMotion.matches ||
+    !('IntersectionObserver' in window) ||
+    !('animate' in Element.prototype)
+  ) {
+    return null;
+  }
+
+  const animations = new Set();
+  const targets = document.querySelectorAll(
+    '#app .hero, #app .couple-heading, #app .couple-layout, ' +
+    '#app .about-header, #app .about-story, #app .gallery-heading, ' +
+    '#app .photo-carousel, #app .about-fun > .about-eyebrow, #app .qa-item, ' +
+    '#app .schedule-header, #app .schedule-day > .date, ' +
+    '#app .timeline-event, #app .attire-section, ' +
+    '#app .faq-header, #app .faq-section-heading, #app .faq-item'
+  );
+
+  // Content stays visible by default, including when animations are unsupported.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      observer.unobserve(entry.target);
+
+      const animation = entry.target.animate(
+        [
+          { opacity: 0, transform: 'translateY(12px)' },
+          { opacity: 1, transform: 'translateY(0)' },
+        ],
+        { duration: 500, easing: 'ease-out' }
+      );
+
+      animations.add(animation);
+      animation.onfinish = () => animations.delete(animation);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+
+  targets.forEach((target) => observer.observe(target));
+
+  // Reveal focused content immediately for keyboard users.
+  function handleFocus(event) {
+    targets.forEach((target) => {
+      if (target.contains(event.target)) {
+        observer.unobserve(target);
+        animations.forEach((animation) => {
+          if (animation.effect.target === target) animation.cancel();
+        });
+      }
+    });
+  }
+
+  function stopReveals() {
+    observer.disconnect();
+    animations.forEach((animation) => animation.cancel());
+    animations.clear();
+  }
+
+  function handleMotionChange() {
+    if (reducedMotion.matches) stopReveals();
+  }
+
+  document.addEventListener('focusin', handleFocus);
+  reducedMotion.addEventListener('change', handleMotionChange);
+
+  return function cleanup() {
+    stopReveals();
+    document.removeEventListener('focusin', handleFocus);
+    reducedMotion.removeEventListener('change', handleMotionChange);
+  };
+}
 
 /* =========================
    ABOUT PHOTO CAROUSEL
