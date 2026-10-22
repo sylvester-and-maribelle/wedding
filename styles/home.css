@@ -50,7 +50,7 @@
 
   margin-bottom: 25px;
 
-  animation: monogramEntrance 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: monogramEntrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes monogramEntrance {
@@ -83,7 +83,7 @@
   opacity: 0;
   transform: translateY(12px);
 
-  animation: heroTextEntrance 1.2s ease-out 0.7s forwards;
+  animation: heroTextEntrance 0.8s ease-out 0.35s forwards;
 }
 
 @keyframes heroTextEntrance {
@@ -199,6 +199,53 @@
 
 .hero-rsvp:hover span {
   transform: translateX(4px);
+}
+
+.hero-rsvp:focus-visible {
+  outline: 3px solid var(--wedding-blue-dark);
+  outline-offset: 5px;
+}
+
+.hero-rsvp:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Added by JavaScript so content remains visible without scroll observation. */
+.page-reveal {
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+
+.page-reveal-pending {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monogram,
+  .hero-text {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .page-reveal,
+  .hero-rsvp,
+  .hero-rsvp span {
+    transition: none;
+  }
+
+  .page-reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-rsvp:hover,
+  .hero-rsvp:active,
+  .hero-rsvp:hover span {
+    transform: none;
+  }
 }
 
 /* =========================

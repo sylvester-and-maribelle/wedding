@@ -1,8 +1,23 @@
 const LAST_PAGE_KEY = 'weddingWebsiteLastPage';
 const validPages = ['home', 'aboutus', 'schedule', 'faq', 'rsvp'];
 
+// Carousel settings
+const CAROUSEL_INTERVAL = 4000; // 4 seconds
+
+let cleanupCarousel = null;
+let pageLoadId = 0;
+
+/* =========================
+   NAVBAR AND PAGE LOADING
+========================= */
+
 async function loadNavbar() {
   const response = await fetch('navbar.html');
+
+  if (!response.ok) {
+    throw new Error('Failed to load navbar');
+  }
+
   const html = await response.text();
 
   document.getElementById('navbar').innerHTML = html;
@@ -10,42 +25,60 @@ async function loadNavbar() {
   const savedPage = localStorage.getItem(LAST_PAGE_KEY);
   const initialPage = validPages.includes(savedPage) ? savedPage : 'home';
 
-  loadPage(initialPage);
+  await loadPage(initialPage);
 }
 
 async function loadPage(pageName) {
-  // Prevent invalid or outdated saved page names
   if (!validPages.includes(pageName)) {
     pageName = 'home';
   }
 
-  const response = await fetch(`pages/${pageName}.html`);
-  const html = await response.text();
+  const currentLoadId = ++pageLoadId;
 
-  document.getElementById('app').innerHTML = html;
-  // Remember the page only after it loads successfully
-  localStorage.setItem(LAST_PAGE_KEY, pageName);
+  try {
+    const response = await fetch(`pages/${pageName}.html`);
 
-  /*
-   * Initialize page-specific features after the page HTML
-   * has been inserted.
-   *
-   * This function safely does nothing when the current page
-   * does not contain a carousel.
-   */
-  initializeAboutCarousel();
+    if (!response.ok) {
+      throw new Error(`Failed to load ${pageName}`);
+    }
 
-  document.querySelectorAll('.nav-item').forEach((item) => {
-    item.classList.toggle('active', item.dataset.page === pageName);
-  });
+    const html = await response.text();
 
-  window.scrollTo({
-    top: 0,
-    behavior: 'instant',
-  });
+    // Ignore outdated responses if guests navigate quickly
+    if (currentLoadId !== pageLoadId) {
+      return;
+    }
+
+    // Clean up the previous carousel
+    if (cleanupCarousel) {
+      cleanupCarousel();
+      cleanupCarousel = null;
+    }
+
+    document.getElementById('app').innerHTML = html;
+
+    // Remember the successfully loaded page
+    localStorage.setItem(LAST_PAGE_KEY, pageName);
+
+    // Initialize carousel only when present
+    cleanupCarousel = initializeAboutCarousel();
+
+    document.querySelectorAll('.nav-item').forEach((item) => {
+      item.classList.toggle('active', item.dataset.page === pageName);
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  } catch (error) {
+    console.error('Page loading error:', error);
+  }
 }
 
-/* Handle navbar and buttons inside loaded pages */
+/* =========================
+   NAVIGATION CLICK HANDLER
+========================= */
 
 document.addEventListener('click', (event) => {
   const pageLink = event.target.closest('[data-page]');
@@ -53,6 +86,8 @@ document.addEventListener('click', (event) => {
   if (!pageLink) {
     return;
   }
+
+  event.preventDefault();
 
   loadPage(pageLink.dataset.page);
 });
@@ -65,7 +100,7 @@ function initializeAboutCarousel() {
   const carousel = document.querySelector('.photo-carousel');
 
   if (!carousel) {
-    return;
+    return null;
   }
 
   const track = carousel.querySelector('.carousel-track');
@@ -85,18 +120,28 @@ function initializeAboutCarousel() {
     !nextButton ||
     !dotsContainer
   ) {
-    return;
+    return null;
   }
 
   let activeIndex = 0;
-  let scrollTimer;
+  let scrollTimer = null;
+  let autoScrollTimer = null;
 
-  /* Make sure neither button is disabled */
+  let isHovering = false;
+  let isInteracting = false;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* =========================
+     INITIAL BUTTON SETTINGS
+  ========================= */
 
   previousButton.disabled = false;
   nextButton.disabled = false;
 
-  /* Create navigation dots */
+  /* =========================
+     CREATE NAVIGATION DOTS
+  ========================= */
 
   dotsContainer.innerHTML = '';
 
@@ -105,16 +150,22 @@ function initializeAboutCarousel() {
 
     dot.type = 'button';
     dot.className = 'carousel-dot';
+
     dot.setAttribute('aria-label', `Go to photo ${index + 1}`);
 
     dot.addEventListener('click', () => {
       goToSlide(index);
+      restartAutoScroll();
     });
 
     dotsContainer.appendChild(dot);
   });
 
   const dots = Array.from(dotsContainer.querySelectorAll('.carousel-dot'));
+
+  /* =========================
+     UPDATE DOT INDICATORS
+  ========================= */
 
   function updateDots() {
     dots.forEach((dot, index) => {
@@ -130,29 +181,71 @@ function initializeAboutCarousel() {
     });
   }
 
+  /* =========================
+     GO TO SPECIFIC SLIDE
+  ========================= */
+
   function goToSlide(index) {
-    /*
-     * Modulo makes the carousel loop:
-     * 5 becomes 0
-     * -1 becomes 4
-     */
+    // Loop infinitely
     activeIndex = (index + slides.length) % slides.length;
 
     track.scrollTo({
       left: slides[activeIndex].offsetLeft,
-      behavior: 'smooth',
+      behavior: reducedMotion.matches ? 'instant' : 'smooth',
     });
 
     updateDots();
   }
 
-  /* Previous and next buttons */
+  /* =========================
+     AUTOMATIC SCROLLING
+  ========================= */
+
+  function stopAutoScroll() {
+    if (autoScrollTimer !== null) {
+      window.clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+  }
+
+  function canAutoScroll() {
+    return (
+      slides.length > 1 &&
+      !isHovering &&
+      !isInteracting &&
+      !document.hidden &&
+      !reducedMotion.matches
+    );
+  }
+
+  function startAutoScroll() {
+    stopAutoScroll();
+
+    if (!canAutoScroll()) {
+      return;
+    }
+
+    autoScrollTimer = window.setInterval(() => {
+      if (canAutoScroll()) {
+        goToSlide(activeIndex + 1);
+      }
+    }, CAROUSEL_INTERVAL);
+  }
+
+  function restartAutoScroll() {
+    startAutoScroll();
+  }
+
+  /* =========================
+     PREVIOUS / NEXT BUTTONS
+  ========================= */
 
   previousButton.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     goToSlide(activeIndex - 1);
+    restartAutoScroll();
   });
 
   nextButton.addEventListener('click', (event) => {
@@ -160,11 +253,57 @@ function initializeAboutCarousel() {
     event.stopPropagation();
 
     goToSlide(activeIndex + 1);
+    restartAutoScroll();
   });
 
-  /* Detect mobile swiping */
+  /* =========================
+     PAUSE ON HOVER
+  ========================= */
 
-  track.addEventListener('scroll', () => {
+  function handleMouseEnter() {
+    isHovering = true;
+    stopAutoScroll();
+  }
+
+  function handleMouseLeave() {
+    isHovering = false;
+    startAutoScroll();
+  }
+
+  carousel.addEventListener('mouseenter', handleMouseEnter);
+  carousel.addEventListener('mouseleave', handleMouseLeave);
+
+  /* =========================
+     MOBILE TOUCH SUPPORT
+  ========================= */
+
+  function handleTouchStart() {
+    isInteracting = true;
+    stopAutoScroll();
+  }
+
+  function handleTouchEnd() {
+    isInteracting = false;
+    restartAutoScroll();
+  }
+
+  track.addEventListener('touchstart', handleTouchStart, {
+    passive: true,
+  });
+
+  track.addEventListener('touchend', handleTouchEnd, {
+    passive: true,
+  });
+
+  track.addEventListener('touchcancel', handleTouchEnd, {
+    passive: true,
+  });
+
+  /* =========================
+     DETECT MANUAL SCROLLING
+  ========================= */
+
+  function handleScroll() {
     window.clearTimeout(scrollTimer);
 
     scrollTimer = window.setTimeout(() => {
@@ -187,34 +326,108 @@ function initializeAboutCarousel() {
       activeIndex = closestIndex;
       updateDots();
     }, 150);
-  });
+  }
 
-  /* Keyboard navigation */
+  track.addEventListener('scroll', handleScroll);
 
-  carousel.addEventListener('keydown', (event) => {
+  /* =========================
+     KEYBOARD NAVIGATION
+  ========================= */
+
+  function handleKeydown(event) {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
+
       goToSlide(activeIndex - 1);
+      restartAutoScroll();
     }
 
     if (event.key === 'ArrowRight') {
       event.preventDefault();
+
       goToSlide(activeIndex + 1);
+      restartAutoScroll();
     }
-  });
+  }
 
-  /* Keep the active photo aligned after resizing */
+  carousel.addEventListener('keydown', handleKeydown);
 
-  window.addEventListener('resize', () => {
+  /* =========================
+     HANDLE WINDOW RESIZE
+  ========================= */
+
+  function handleResize() {
     track.scrollTo({
       left: slides[activeIndex].offsetLeft,
-      behavior: 'auto',
+      behavior: 'instant',
     });
-  });
+  }
+
+  window.addEventListener('resize', handleResize);
+
+  /* =========================
+     PAUSE WHEN TAB IS HIDDEN
+  ========================= */
+
+  function handleVisibilityChange() {
+    if (document.hidden) {
+      stopAutoScroll();
+    } else {
+      startAutoScroll();
+    }
+  }
+
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+
+  /* =========================
+     ACCESSIBILITY
+  ========================= */
+
+  function handleMotionChange() {
+    startAutoScroll();
+  }
+
+  reducedMotion.addEventListener('change', handleMotionChange);
+
+  /* =========================
+     INITIALIZE CAROUSEL
+  ========================= */
 
   updateDots();
+  startAutoScroll();
+
+  /* =========================
+     CLEANUP WHEN LEAVING PAGE
+  ========================= */
+
+  return function cleanup() {
+    stopAutoScroll();
+    window.clearTimeout(scrollTimer);
+
+    carousel.removeEventListener('mouseenter', handleMouseEnter);
+
+    carousel.removeEventListener('mouseleave', handleMouseLeave);
+
+    track.removeEventListener('touchstart', handleTouchStart);
+
+    track.removeEventListener('touchend', handleTouchEnd);
+
+    track.removeEventListener('touchcancel', handleTouchEnd);
+
+    track.removeEventListener('scroll', handleScroll);
+
+    carousel.removeEventListener('keydown', handleKeydown);
+
+    window.removeEventListener('resize', handleResize);
+
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+
+    reducedMotion.removeEventListener('change', handleMotionChange);
+  };
 }
 
-/* Start the website */
+/* =========================
+   START WEBSITE
+========================= */
 
 loadNavbar();
