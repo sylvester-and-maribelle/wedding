@@ -1,4 +1,3 @@
-const LAST_PAGE_KEY = 'weddingWebsiteLastPage';
 const validPages = ['home', 'aboutus', 'schedule', 'faq', 'rsvp'];
 
 // Carousel settings
@@ -23,13 +22,14 @@ async function loadNavbar() {
 
   document.getElementById('navbar').innerHTML = html;
 
-  const savedPage = localStorage.getItem(LAST_PAGE_KEY);
-  const initialPage = validPages.includes(savedPage) ? savedPage : 'home';
+  // A direct link (?page=rsvp) takes priority over the last visited page.
+  const queryPage = new URLSearchParams(window.location.search).get('page');
+  const initialPage = validPages.includes(queryPage) ? queryPage : 'home';
 
-  await loadPage(initialPage);
+  await loadPage(initialPage, 'initial');
 }
 
-async function loadPage(pageName) {
+async function loadPage(pageName, navigationType = 'push') {
   if (!validPages.includes(pageName)) {
     pageName = 'home';
   }
@@ -63,8 +63,16 @@ async function loadPage(pageName) {
 
     document.getElementById('app').innerHTML = html;
 
-    // Remember the successfully loaded page
-    localStorage.setItem(LAST_PAGE_KEY, pageName);
+    // Keep the URL in sync, so refreshes and shared links open this page.
+    // Preserve other query parameters and hash fragments.
+    if (navigationType === 'push') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('page', pageName);
+      window.history.pushState({ page: pageName }, '', url);
+    } else if (navigationType === 'initial') {
+      // Retain the original URL, including a clean homepage link.
+      window.history.replaceState({ page: pageName }, '');
+    }
 
     // Initialize carousel only when present
     cleanupCarousel = initializeAboutCarousel();
@@ -100,6 +108,18 @@ document.addEventListener('click', (event) => {
   loadPage(pageLink.dataset.page);
 });
 
+// Restore the selected page when using the browser Back/Forward buttons.
+window.addEventListener('popstate', (event) => {
+  const queryPage = new URLSearchParams(window.location.search).get('page');
+  const page = validPages.includes(event.state?.page)
+    ? event.state.page
+    : validPages.includes(queryPage)
+      ? queryPage
+      : 'home';
+
+  loadPage(page, 'popstate');
+});
+
 /* =========================
    GENTLE SCROLL REVEALS
 ========================= */
@@ -118,32 +138,35 @@ function initializeScrollReveal() {
   const animations = new Set();
   const targets = document.querySelectorAll(
     '#app .hero, #app .couple-heading, #app .couple-layout, ' +
-    '#app .about-header, #app .about-story, #app .gallery-heading, ' +
-    '#app .photo-carousel, #app .about-fun > .about-eyebrow, #app .qa-item, ' +
-    '#app .schedule-header, #app .schedule-day > .date, ' +
-    '#app .timeline-event, #app .attire-section, ' +
-    '#app .faq-header, #app .faq-section-heading, #app .faq-item'
+      '#app .about-header, #app .about-story, #app .gallery-heading, ' +
+      '#app .photo-carousel, #app .about-fun > .about-eyebrow, #app .qa-item, ' +
+      '#app .schedule-header, #app .schedule-day > .date, ' +
+      '#app .timeline-event, #app .attire-section, ' +
+      '#app .faq-header, #app .faq-section-heading, #app .faq-item',
   );
 
   // Content stays visible by default, including when animations are unsupported.
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
 
-      observer.unobserve(entry.target);
+        observer.unobserve(entry.target);
 
-      const animation = entry.target.animate(
-        [
-          { opacity: 0, transform: 'translateY(12px)' },
-          { opacity: 1, transform: 'translateY(0)' },
-        ],
-        { duration: 500, easing: 'ease-out' }
-      );
+        const animation = entry.target.animate(
+          [
+            { opacity: 0, transform: 'translateY(12px)' },
+            { opacity: 1, transform: 'translateY(0)' },
+          ],
+          { duration: 500, easing: 'ease-out' },
+        );
 
-      animations.add(animation);
-      animation.onfinish = () => animations.delete(animation);
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+        animations.add(animation);
+        animation.onfinish = () => animations.delete(animation);
+      });
+    },
+    { threshold: 0, rootMargin: '0px 0px -24px 0px' },
+  );
 
   targets.forEach((target) => observer.observe(target));
 
